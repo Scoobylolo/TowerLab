@@ -24,7 +24,7 @@ def read_file(filename):
 
                 city = cell_api.get_info(int(col2), int(col3), int(col4), int(col5))
 
-                print("Time: {}\nCity: {}\n\n".format(get_time(int(col1)),city))
+                print("Time: {}\n{}: {}\n\n".format(get_time(int(col1)),city))
 
                 # print(col1, col2, col3, col4, col5, col6)
             else:

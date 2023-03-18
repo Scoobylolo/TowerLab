@@ -16,14 +16,14 @@ def get_city(lat, lng):
     }
     response = requests.get(url, params=params, headers=headers)
     json_object = response.json()
-    print(json_object)
+    # print(json_object)
     if response.status_code != 200:
         return None
     
     try:
-        return "city",json_object["addresses"][0]["city"], json_object["addresses"][0]["country"]
+        return "City",json_object["addresses"][0]["city"], json_object["addresses"][0]["country"]
     except KeyError:
-        return "county",json_object["addresses"][0]["county"], json_object["addresses"][0]["country"]
+        return "County",json_object["addresses"][0]["county"], json_object["addresses"][0]["country"]
     # print(json_object)
 
 if __name__ == '__main__':
