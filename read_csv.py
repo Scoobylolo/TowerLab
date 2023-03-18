@@ -1,0 +1,35 @@
+#Author: Andy Carvajal    https://github.com/Scoobylolo
+
+import csv
+import cell_api
+import datetime
+
+def get_time(timestamp):
+    dt_object = datetime.datetime.fromtimestamp(timestamp)
+    dt_string = dt_object.strftime("%Y-%m-%d %H:%M:%S %a")
+    return dt_string
+
+def read_file(filename):
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        passed=False
+        for row in reader:
+            if len(row) == 6:
+                col1, col2, col3, col4, col5, col6 = row
+                if col1=="Timestamp":
+                    passed=True
+                    continue
+                if not passed:
+                    continue
+
+                city = cell_api.get_info(int(col2), int(col3), int(col4), int(col5))
+
+                print("Time: {}\nCity: {}\n\n".format(get_time(int(col1)),city))
+
+                # print(col1, col2, col3, col4, col5, col6)
+            else:
+                print('Invalid row:', row)
+
+if __name__ == '__main__':
+    read_file('CellTowerData.csv')
+
